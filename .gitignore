@@ -139,3 +139,4 @@ cython_debug/
 
 notes.txt
 local.settings.json
+Dockerfile
