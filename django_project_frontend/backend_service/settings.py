@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from os import getenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -81,10 +82,10 @@ DATABASES = {
     },
     'data': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'weatherdb',
-        'USER': 'devops',
-        'PASSWORD': 'ljksadfhjuyerGFd65',
-        'HOST': 'devops-db-server.database.windows.net',
+        'NAME': getenv('DATABASE'),
+        'USER': getenv('DB_USER'),
+        'PASSWORD': getenv('DB_PASSWORD'),
+        'HOST': getenv('DB_SERVER'),
         'PORT': '1433',
         "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", 
         },

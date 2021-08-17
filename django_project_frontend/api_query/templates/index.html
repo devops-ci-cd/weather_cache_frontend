@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% comment %} <h1>Set the period of time:</h1> {% endcomment %}
-  {% comment %} <form method="post">
+<h1>Choose a day to fetch into the database:</h1>
+  <form method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
 	<input type="submit" value="Submit">
-  </form> {% endcomment %}
+  </form>
 
   <h1> Raw data from the database: </h1>
 
