@@ -82,10 +82,10 @@ DATABASES = {
     },
     'data': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': getenv('DATABASE'),
+        'NAME': getenv('azure_db_name'),
         'USER': getenv('DB_USER'),
-        'PASSWORD': getenv('DB_PASSWORD'),
-        'HOST': getenv('DB_SERVER'),
+        'PASSWORD': getenv('password'),
+        'HOST': getenv('azure_db_server_name'),
         'PORT': '1433',
         "OPTIONS": {"driver": "ODBC Driver 17 for SQL Server", 
         },
