@@ -1,1 +1,8 @@
-
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'epm-rdsp'
+    appType: 'webAppLinux'
+    WebAppName: '$(azure_frontend_app_name)'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'PYTHON|3.7'
