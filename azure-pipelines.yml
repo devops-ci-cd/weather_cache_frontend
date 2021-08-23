@@ -1,8 +1,28 @@
-- task: AzureRmWebAppDeployment@4
+trigger:
+- backend
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UsePythonVersion@0
   inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'epm-rdsp'
-    appType: 'webAppLinux'
-    WebAppName: '$(azure_frontend_app_name)'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    RuntimeStack: 'PYTHON|3.7'
+    versionSpec: '3.7'
+  displayName: 'Use Python 3.7'
+
+- script: |
+    python -m venv antenv
+    source antenv/bin/activate
+    python -m pip install --upgrade pip
+    pip install setup
+    pip install -r requirements.txt
+  workingDirectory: '$(System.DefaultWorkingDirectory)/django_project_frontend'
+  displayName: "Install requirements"
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/django_project_frontend'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    replaceExistingArchive: true
