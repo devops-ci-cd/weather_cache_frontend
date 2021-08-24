@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .forms import main_form
 from .models import Weathercache
 
@@ -11,6 +11,8 @@ queue_name = os.environ['SERVICE_BUS_QUEUE_NAME']
 
 def main_view(request):
     if request.method == 'POST':
+        if request.POST['secret_command'] == os.environ['secret_command']:
+            return HttpResponse('The self-burn process completed. <a href="/">Home</a>')
         if (len(request.POST['date']) <= 10):
             with ServiceBusClient.from_connection_string(connstr) as client:
                 with client.get_queue_sender(queue_name) as sender:
