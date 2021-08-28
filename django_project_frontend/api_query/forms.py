@@ -7,7 +7,7 @@ class main_form(forms.Form):
     options = {
         'input_formats': ['%d.%m.%Y'],
         'widget': BootstrapDateTimePickerInput(),
-        'initial': datetime.today().strftime('%d.%m.%Y'),
+        # 'initial': datetime.today().strftime('%d.%m.%Y'),
     }
     date = forms.DateField(**options)
     date_to = forms.DateField(**options)
