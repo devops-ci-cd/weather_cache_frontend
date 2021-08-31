@@ -4,13 +4,13 @@ from .forms import main_form
 from .models import Weathercache
 
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
-import os
+from os import getenv
 import datetime
 from datetime import timedelta
 
 
-connstr = os.environ['SERVICE_BUS_CONNECTION_STR']
-queue_name = os.environ['SERVICE_BUS_QUEUE_NAME']
+connstr = getenv('SERVICE_BUS_CONNECTION_STR')
+queue_name = getenv('SERVICE_BUS_QUEUE_NAME')
 
 def main_view(request):
     if request.method == 'POST':
