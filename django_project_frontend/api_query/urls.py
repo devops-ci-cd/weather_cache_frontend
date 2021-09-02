@@ -5,4 +5,5 @@ from .views import main_view
   
 urlpatterns = [
     path('', main_view),
+    # path('/result'), 
 ]

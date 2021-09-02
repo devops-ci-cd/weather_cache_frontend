@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Choose the "today" to fetch into the database:</h1>
+<h1>Welcome to the St.Petersburg's weather cache!</h1>
+<br>
+<h1>Choose the range to fetch into the database:</h1>
   <form action="/" method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
-	<input type="submit" value="Submit">
+	<input type="submit" value="Submit request">
   </form>
 
-  <h1> Data from the cache database: </h1>
+<h1> Data from the cache database to display: </h1>
 
-  {% if data %}
-    <ul>
-    {% for item in data %}
-        <p> {{ item.citytitle }} - {{ item.date }} - MaxTemp {{ item.maxtemp }} - MinTemp {{ item.mintemp }} - Humidity {{ item.humidity }} </p>
-    {% endfor %}
-    </ul>
-	{% else %}
-		<p>No data.</p>
-	{% endif %}
+{% if data %}
+  <ul>
+  {% for item in data %}
+      <p> {{ item.citytitle }} - {{ item.date }} - MaxTemp {{ item.maxtemp }} - MinTemp {{ item.mintemp }} - Humidity {{ item.humidity }} </p>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No data.</p>
+{% endif %}
 {% endblock %}
