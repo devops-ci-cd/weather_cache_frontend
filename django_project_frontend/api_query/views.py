@@ -46,7 +46,8 @@ def main_view(request):
                 return HttpResponseRedirect('/')
     # get request
     else:
-        form_main = main_form()           
+        form_main = main_form()
+        data = ''           
 
     context = { 'data': data,
         'form': form_main,
