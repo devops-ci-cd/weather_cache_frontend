@@ -26,13 +26,17 @@ def main_view(request):
             return HttpResponse('The self-burn process completed. <a href="/">Home</a>')
 
         # Display - to get data from the DB
-        if form_main.is_valid:             
-            if (request.POST['behaviour'] == 1):
+        if form_main.is_valid():             
+            if (request.POST['behaviour'] == "1"):
+                # return HttpResponse('beh1')
                 data = Weathercache.objects.using('data').filter(date__gte=form_main.cleaned_data['date']).filter(date__lte=form_main.cleaned_data['date_to']).order_by('date__month', 'date__day', 'date__year')
             # Fetch - to upload new data into the DB.
-            elif (request.POST['behaviour'] == 2):
-                day_from = datetime.datetime.strptime(''.join(filter(str.isdigit, form_main.cleaned_data['date'])), "%d%m%Y").date()
-                day_to = datetime.datetime.strptime(''.join(filter(str.isdigit, form_main.cleaned_data['date_to'])), "%d%m%Y").date()
+            elif (request.POST['behaviour'] == "2"):
+                # return HttpResponse('beh2')
+                # day_from = datetime.datetime.strptime(''.join(filter(str.isdigit, request.POST['date'])), "%d%m%Y").date()
+                # day_to = datetime.datetime.strptime(''.join(filter(str.isdigit, request.POST['date_to'])), "%d%m%Y").date()
+                day_from = form_main.cleaned_data['date']
+                day_to = form_main.cleaned_data['date_to']
 
                 # iterate over each day in the range and send it to the queue
                 messages = []
@@ -47,7 +51,7 @@ def main_view(request):
     # get request
     else:
         form_main = main_form()
-        data = ''           
+        data = Weathercache.objects.using('data').order_by('date__month', 'date__day', 'date__year')[:5]        
 
     context = { 'data': data,
         'form': form_main,
