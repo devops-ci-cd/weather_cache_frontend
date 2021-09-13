@@ -28,13 +28,9 @@ def main_view(request):
         # Display - to get data from the DB
         if form_main.is_valid():             
             if (request.POST['behaviour'] == "1"):
-                # return HttpResponse('beh1')
                 data = Weathercache.objects.using('data').filter(date__gte=form_main.cleaned_data['date']).filter(date__lte=form_main.cleaned_data['date_to']).order_by('date__month', 'date__day', 'date__year')
             # Fetch - to upload new data into the DB.
             elif (request.POST['behaviour'] == "2"):
-                # return HttpResponse('beh2')
-                # day_from = datetime.datetime.strptime(''.join(filter(str.isdigit, request.POST['date'])), "%d%m%Y").date()
-                # day_to = datetime.datetime.strptime(''.join(filter(str.isdigit, request.POST['date_to'])), "%d%m%Y").date()
                 day_from = form_main.cleaned_data['date']
                 day_to = form_main.cleaned_data['date_to']
 
