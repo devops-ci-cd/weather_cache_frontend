@@ -30,10 +30,11 @@ DEBUG = True
 ALLOWED_HOSTS = ['*',]
 
 LOGGING = {
+    'version': 1,
     "handlers": {
         "azure": {
             "level": "DEBUG",
-        "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
+            "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
             "instrumentation_key": getenv('APPINSIGHTS_INSTRUMENTATIONKEY'),
          },
         "console": {
@@ -43,7 +44,7 @@ LOGGING = {
          },
       },
     "loggers": {
-        "logger_name": {"handlers": ["azure", "console"]},
+        "dj_logger": {"handlers": ["azure", "console"]},
     },
 }
 
