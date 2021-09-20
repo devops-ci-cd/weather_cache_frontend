@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from os import getenv
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -28,6 +29,23 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*',]
 
+LOGGING = {
+    "handlers": {
+        "azure": {
+            "level": "DEBUG",
+        "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
+            "instrumentation_key": getenv('APPINSIGHTS_INSTRUMENTATIONKEY'),
+         },
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+         },
+      },
+    "loggers": {
+        "logger_name": {"handlers": ["azure", "console"]},
+    },
+}
 
 # Application definition
 
