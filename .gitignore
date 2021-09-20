@@ -129,7 +129,6 @@ dmypy.json
 cython_debug/
 django_project_frontend/notes.txt
 .vscode/
-Dockerfile
 local.settings.json
 .terraform
 azure_infrastructure/terraform/terraform.exe
