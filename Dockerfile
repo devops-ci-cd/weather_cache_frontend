@@ -13,8 +13,6 @@ RUN apt-get update && apt-get install -y g++ python3-pip msodbcsql17 mssql-tools
 
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 
-#RUN source ~/.bashrc
-#add opencensus-ext-azure
 RUN apt-get install -y unixodbc-dev
 
 RUN python -m pip install --upgrade pip
