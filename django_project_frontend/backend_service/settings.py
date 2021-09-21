@@ -44,7 +44,7 @@ LOGGING = {
          },
       },
     "loggers": {
-        "dj_logger": {"handlers": ["azure", "console"]},
+        "django": {"handlers": ["azure", "console"]},
     },
 }
 
