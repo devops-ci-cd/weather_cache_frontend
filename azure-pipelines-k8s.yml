@@ -1,0 +1,13 @@
+trigger:
+- dev
+
+pool:
+ vmImage: ubuntu-latest
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'epam-service-principal'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az account show'
