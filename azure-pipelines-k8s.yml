@@ -1,5 +1,5 @@
 trigger:
-- dev
+- dev-k8s
 
 pool:
  vmImage: ubuntu-latest
