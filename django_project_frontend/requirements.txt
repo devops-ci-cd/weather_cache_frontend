@@ -3,3 +3,4 @@ pyodbc
 django-mssql-backend
 mssql-django
 azure-servicebus
+opencensus-ext-azure
